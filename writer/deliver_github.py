@@ -54,8 +54,9 @@ def main(client_dir, repo_dir):
         shutil.copy(WRITER / f, repo / "writer" / f)
     for f in ("client.json", cfg["css"], "make_covers.py", "verify_live_theme.py"):
         shutil.copy(d / f, repo / "writer" / f)
-    for f in ("catalog.json", "alts.json"):
-        shutil.copy(d / "data" / f, repo / "writer" / "data" / f)
+    for f in ("catalog.json", "alts.json", "logo_wordmark.webp", "cover_bg.png"):
+        if (d / "data" / f).exists():
+            shutil.copy(d / "data" / f, repo / "writer" / "data" / f)
     for f in sorted((d / "src").glob("*.html")):
         shutil.copy(f, repo / "writer" / "src" / f.name)
     cards = "".join(

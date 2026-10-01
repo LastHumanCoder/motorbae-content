@@ -77,7 +77,7 @@ python3 writer/build.py <client-dir>                    # rebuild + gates
 python3 writer/verify_live_theme.py                     # render inside the live theme
 ```
 
-`writer/` holds the sources (`src/`), the stylesheet (`mb-post.css`, the September house CSS plus a product-card grid and mobile hardening), the catalogue snapshot (`data/catalog.json`, harvested 2026-10-01), the image alts (`data/alts.json`) and the cover generator. The writer is not MotorBae-specific: point `harvest.py` at another Shopify store and add a `client.json`.
+`writer/` holds the sources (`src/`), the stylesheet (`mb-post.css`, the September house CSS plus a product-card grid and mobile hardening), the catalogue snapshot (`data/catalog.json`, harvested 2026-10-01), the image alts (`data/alts.json`) and the cover generator. Featured images follow MotorBae's current blog cover style: the light grey engine-parts background (built from a text-free strip of their own cover pattern), the exact MOTORBAE wordmark supplied by the client (`writer/data/logo_wordmark.webp`), a dark italic eyebrow with `///`, a slanted purple headline, an outlined chip and a footer line, at 1734x907 like their recent covers. Regenerate with `python3 writer/make_covers.py`. The writer is not MotorBae-specific: point `harvest.py` at another Shopify store and add a `client.json`.
 
 ## Notes for the MotorBae team
 
