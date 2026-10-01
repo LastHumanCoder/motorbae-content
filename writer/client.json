@@ -1,0 +1,18 @@
+{
+  "brand": "MotorBae",
+  "domain": "motorbae.store",
+  "blog": "the-garage",
+  "root": "mb-post",
+  "css": "mb-post.css",
+  "logo": "https://motorbae.store/cdn/shop/files/logomark_noise_gradient.png?v=1770576518&width=1920",
+  "shopbar": "NEW DROPS WEEKLY AT MOTORBAE &middot; <a href=\"https://motorbae.store/collections/all\">SHOP THE FULL COLLECTION &rarr;</a>",
+  "not_sold": ["jacket", "sweater", "cargo", "polo", "track pant", "trackpant", "tracksuit", "full sleeve", "full-sleeve", "long sleeve", "zip", "jeans"],
+  "price_caps": [699, 999, 1499],
+  "extra_links": ["/collections/all"],
+  "october": [
+    "best-hoodies-for-men-india-2026", "best-diwali-gifts-for-car-lovers-india-2026",
+    "best-full-sleeve-t-shirts-for-men-india-2026", "best-cargo-pants-for-men-india-2026",
+    "best-jacket-for-men-india-2026", "best-sweater-for-men-india-2026", "best-gifts-for-him-india-2026",
+    "automotive-t-shirts-india-2026", "best-track-pants-for-men-india-2026", "best-winter-outfits-for-men-india-2026"
+  ]
+}
