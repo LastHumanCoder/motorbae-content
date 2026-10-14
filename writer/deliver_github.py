@@ -54,9 +54,11 @@ def main(client_dir, repo_dir):
         shutil.copy(WRITER / f, repo / "writer" / f)
     for f in ("client.json", cfg["css"], "make_covers.py", "verify_live_theme.py"):
         shutil.copy(d / f, repo / "writer" / f)
-    for f in ("catalog.json", "alts.json", "logo_wordmark.webp", "cover_bg.png"):
+    for f in ("catalog.json", "alts.json", "logo_official.png", "cover_bg.png"):
         if (d / "data" / f).exists():
             shutil.copy(d / "data" / f, repo / "writer" / "data" / f)
+    if (d / "data" / "fonts").exists():  # client brand fonts used by make_covers.py
+        shutil.copytree(d / "data" / "fonts", repo / "writer" / "data" / "fonts", dirs_exist_ok=True)
     for f in sorted((d / "src").glob("*.html")):
         shutil.copy(f, repo / "writer" / "src" / f.name)
     cards = "".join(

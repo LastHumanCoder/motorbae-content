@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """Featured images for the October posts in MotorBae's current blog cover style (the light grey
 engine-parts pattern used on the September posts), with the exact MOTORBAE wordmark the client
-supplied (data/logo_wordmark.webp). 1734x907, the size of their recent covers.
+brand kit (data/logo_official.png = Final_Set_Logos/logomark_noise_gradient.png, 3508px) and the client's
+brand fonts (data/fonts: Chivo Black/ExtraBold Italic for headline + eyebrow, Geist for chip + footer).
+1734x907, the size of their recent covers.
 
 Background (data/cover_bg.png) is built from a text-free strip of their own cover pattern."""
-import base64, pathlib
+import base64, json, pathlib, sys
 from playwright.sync_api import sync_playwright
 ROOT = pathlib.Path(__file__).resolve().parent
 b64 = lambda f: base64.b64encode((ROOT / "data" / f).read_bytes()).decode()
-LOGO, BG = b64("logo_wordmark.webp"), b64("cover_bg.png")
+LOGO, BG = b64("logo_official.png"), b64("cover_bg.png")
+FACES = [("Chivo", 900, "italic", "Chivo-BlackItalic.ttf"), ("Chivo", 800, "italic", "Chivo-ExtraBoldItalic.ttf"),
+         ("Geist", 600, "normal", "Geist-SemiBold.ttf"), ("Geist", 700, "normal", "Geist-Bold.ttf")]
+FONTS = "".join(f"@font-face{{font-family:{f};font-weight:{w};font-style:{st};src:url(data:font/ttf;base64,{b64('fonts/' + fn)})}}"
+                for f, w, st, fn in FACES)
 C = {  # eyebrow, headline lines, chip, footer
  "best-hoodies-for-men-india-2026": ("THE WINTER GUIDE", ["BEST HOODIES FOR", "MEN INDIA 2026"], "GSM · FIT · ZIP OR PULLOVER", "RANKED & COMPARED"),
  "best-diwali-gifts-for-car-lovers-india-2026": ("THE GIFT GUIDE", ["BEST DIWALI GIFTS", "FOR CAR LOVERS 2026"], "BY BUDGET · FOR HIM · FOR HER", "REAL PRICES FROM ₹299"),
@@ -21,18 +27,23 @@ C = {  # eyebrow, headline lines, chip, footer
  "best-track-pants-for-men-india-2026": ("THE COMFORT GUIDE", ["BEST TRACK PANTS", "FOR MEN INDIA 2026"], "SWEATPANTS · JOGGERS · TRACKSUITS", "FABRIC, FIT & STYLING"),
  "best-winter-outfits-for-men-india-2026": ("THE STYLE GUIDE", ["BEST WINTER OUTFITS", "FOR MEN INDIA 2026"], "THE 7-PIECE WINTER CAPSULE", "BY OCCASION · BY CITY · LAYERING"),
 }
-HTML = """<html><head><link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,500..900;1,100..125,700..900&display=block" rel="stylesheet">
-<style>*{{margin:0;box-sizing:border-box}}
-body{{width:1734px;height:907px;overflow:hidden;background:#c9c9c9 url(data:image/png;base64,{bg}) 0 0/1734px 907px;font-family:'Archivo',sans-serif;color:#0a0a0a}}
+# `python3 make_covers.py existing` renders the client's already-published posts into covers_existing/
+EXISTING = len(sys.argv) > 1 and sys.argv[1] == "existing"
+if EXISTING:
+    C = {slug: tuple(cfg) for slug, cfg in json.loads((ROOT / "data" / "_existing_covers.json").read_text()).items()}
+OUT = ROOT / ("covers_existing" if EXISTING else "covers"); OUT.mkdir(exist_ok=True)
+HTML = """<html><head><meta charset="utf-8">
+<style>{fonts}*{{margin:0;box-sizing:border-box}}
+body{{width:1734px;height:907px;overflow:hidden;background:#c9c9c9 url(data:image/png;base64,{bg}) 0 0/1734px 907px;font-family:'Geist',sans-serif;color:#0a0a0a}}
 .w{{position:absolute;inset:0;padding:70px 100px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}}
 .logo{{width:960px;height:auto;display:block;margin-bottom:26px}}
-.eb{{font-style:normal;font-weight:900;font-stretch:108%;transform:skewX(-9deg);transform-origin:left bottom;font-size:42px;letter-spacing:.02em;display:flex;gap:16px;margin-bottom:6px}}
-.sl{{color:#0a0a0a;font-weight:900;letter-spacing:-.04em;display:inline-block;transform:skewX(-9deg)}}
-h1{{font-style:normal;font-weight:900;font-stretch:102%;text-transform:uppercase;color:#7444b4;line-height:.95;letter-spacing:.01em;font-size:{size}px;white-space:nowrap;margin-bottom:28px}}
+.eb{{font-family:Chivo;font-style:italic;font-weight:800;font-size:42px;letter-spacing:.02em;display:flex;gap:16px;margin-bottom:6px}}
+.sl{{color:#0a0a0a;font-family:Chivo;font-style:italic;font-weight:900;letter-spacing:-.04em}}
+h1{{font-family:Chivo;font-style:italic;font-weight:900;text-transform:uppercase;color:#7444b4;line-height:.95;letter-spacing:.01em;font-size:{size}px;white-space:nowrap;margin-bottom:28px}}
 .chip{{position:relative;display:inline-block;padding:12px 54px 12px 28px;margin-bottom:26px}}.chip svg{{position:absolute;inset:0;width:100%;height:100%;overflow:visible}}
-.chip span{{font-weight:600;font-stretch:110%;font-size:44px;letter-spacing:.12em}}
-.ft{{font-weight:700;font-stretch:110%;font-size:33px;letter-spacing:.1em;display:flex;gap:16px}}
-.l{{display:block;transform:skewX(-9deg);transform-origin:left bottom}}</style></head><body><div class="w"><img class="logo" src="data:image/webp;base64,{logo}">
+.chip span{{font-weight:600;font-size:44px;letter-spacing:.12em}}
+.ft{{font-weight:700;font-size:33px;letter-spacing:.1em;display:flex;gap:16px}}
+.l{{display:block}}</style></head><body><div class="w"><img class="logo" src="data:image/png;base64,{logo}">
 <div class="eb">{eb} <span class="sl">///</span></div><h1>{h1}</h1><div class="chip"><svg></svg><span>{chip}</span></div>
 <div class="ft"><span class="sl">///</span> {ft}</div></div></body></html>"""
 with sync_playwright() as p:
@@ -40,9 +51,11 @@ with sync_playwright() as p:
     for h, (eb, lines, chip, ft) in C.items():
         size = 160
         while True:  # largest headline that fits the left 76% of the card
-            pg.set_content(HTML.format(bg=BG, logo=LOGO, eb=eb, h1="".join(f'<span class="l">{l}</span>' for l in lines), chip=chip, ft=ft, size=size))
+            pg.set_content(HTML.format(fonts=FONTS, bg=BG, logo=LOGO, eb=eb, h1="".join(f'<span class="l">{l}</span>' for l in lines), chip=chip, ft=ft, size=size))
             pg.wait_for_load_state("networkidle"); pg.evaluate("document.fonts.ready.then(() => 1)")
             fits = pg.evaluate("document.querySelector('h1').scrollWidth <= 1500 && document.querySelector('.w').scrollHeight <= 907")
+            got = pg.evaluate("[...document.fonts].filter(f => f.status == 'loaded').map(f => f.family + f.weight).sort().join()")
+            assert got == "Chivo800,Chivo900,Geist600,Geist700", got
             if fits or size <= 96:
                 break
             size -= 6
@@ -50,6 +63,6 @@ with sync_playwright() as p:
             s.setAttribute('viewBox', `0 0 ${w} ${h}`);
             s.innerHTML = `<polygon points="2,2 ${w-2},2 ${w-30},${h-2} 2,${h-2}" fill="none" stroke="#7444b4" stroke-width="4" stroke-linejoin="miter"/>`; }""")
         pg.wait_for_timeout(300)
-        pg.screenshot(path=str(ROOT / "covers" / f"{h}.png"))
+        pg.screenshot(path=str(OUT / f"{h}.png"))
         print(f"{'ok ' if fits else 'TIGHT'} {size}px {h}")
     b.close()
