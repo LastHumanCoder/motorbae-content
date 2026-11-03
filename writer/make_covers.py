@@ -27,11 +27,12 @@ C = {  # eyebrow, headline lines, chip, footer
  "best-track-pants-for-men-india-2026": ("THE COMFORT GUIDE", ["BEST TRACK PANTS", "FOR MEN INDIA 2026"], "SWEATPANTS · JOGGERS · TRACKSUITS", "FABRIC, FIT & STYLING"),
  "best-winter-outfits-for-men-india-2026": ("THE STYLE GUIDE", ["BEST WINTER OUTFITS", "FOR MEN INDIA 2026"], "THE 7-PIECE WINTER CAPSULE", "BY OCCASION · BY CITY · LAYERING"),
 }
-# `python3 make_covers.py existing` renders the client's already-published posts into covers_existing/
-EXISTING = len(sys.argv) > 1 and sys.argv[1] == "existing"
-if EXISTING:
-    C = {slug: tuple(cfg) for slug, cfg in json.loads((ROOT / "data" / "_existing_covers.json").read_text()).items()}
-OUT = ROOT / ("covers_existing" if EXISTING else "covers"); OUT.mkdir(exist_ok=True)
+# `python3 make_covers.py <set>` renders data/_<set>_covers.json into covers_<set>/
+# (e.g. `existing` = the client's already-published posts, `november` = the November calendar)
+SET = sys.argv[1] if len(sys.argv) > 1 else None
+if SET:
+    C = {slug: tuple(cfg) for slug, cfg in json.loads((ROOT / "data" / f"_{SET}_covers.json").read_text()).items()}
+OUT = ROOT / (f"covers_{SET}" if SET else "covers"); OUT.mkdir(exist_ok=True)
 HTML = """<html><head><meta charset="utf-8">
 <style>{fonts}*{{margin:0;box-sizing:border-box}}
 body{{width:1734px;height:907px;overflow:hidden;background:#c9c9c9 url(data:image/png;base64,{bg}) 0 0/1734px 907px;font-family:'Geist',sans-serif;color:#0a0a0a}}
