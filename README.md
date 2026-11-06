@@ -2,6 +2,8 @@
 
 Ten Shopify-ready blog posts for **The Garage** on [motorbae.store](https://motorbae.store), written from the October 2026 content calendar.
 
+**November 2026 batch:** 15 more posts in [november/](november/) ([previews](https://lasthumancoder.github.io/motorbae-content/november/)), covers in [covers-november/](covers-november/).
+
 **Live previews:** https://lasthumancoder.github.io/motorbae-content/ (previews are `noindex`; the real posts go on motorbae.store)
 
 | Date | Post | Shopify handle | Primary keyword | Words | Store links | Product images | Files |

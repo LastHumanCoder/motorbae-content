@@ -117,7 +117,7 @@ def build(d, cfg, cat, alts, handle):
     post = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": meta["title"],
             "description": meta["meta"], "author": {"@type": "Organization", "name": cfg["brand"]},
             "publisher": {"@type": "Organization", "name": cfg["brand"], "logo": {"@type": "ImageObject", "url": cfg["logo"]}},
-            "datePublished": meta["date"], "dateModified": meta["date"], "mainEntityOfPage": url,
+            "datePublished": meta.get("first_published", meta["date"]), "dateModified": meta["date"], "mainEntityOfPage": url,
             "image": x.prod(meta["cover"].split("|")[0].split("#")[0])["images"][0]}
     faqld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": plain(q), "acceptedAnswer": {"@type": "Answer", "text": plain(a)}} for q, a in qa]}
@@ -210,7 +210,7 @@ def gate(d, cfg, cat, handle, meta, out, qa):
     # links: real store URLs only
     P = {p["url"] for p in cat["products"]}; C = {c["url"] for c in cat["collections"]}; A = {a["url"] for a in cat["articles"]}
     base = f"https://{cfg['domain']}"
-    O = {f"{base}/blogs/{cfg['blog']}/{h}" for h in cfg["october"]}
+    O = {f"{base}/blogs/{cfg['blog']}/{h}" for h in cfg.get("october", []) + cfg.get("november", [])}
     X = {base + e for e in cfg["extra_links"]}
     links = set(re.findall(rf'href="({re.escape(base)}[^"#]*)"', root))
     dead = sorted(l for l in links if l not in P | C | A | O | X)
@@ -258,7 +258,7 @@ def main(client_dir, handles):
     d, cfg, cat, alts = load(client_dir)
     (d / "out").mkdir(exist_ok=True)
     fails = 0
-    for h in handles or cfg["october"]:
+    for h in handles or cfg.get("october", []) + cfg.get("november", []):
         if not (d / "src" / f"{h}.html").exists():
             print(f"skip {h} (no source yet)"); continue
         try:

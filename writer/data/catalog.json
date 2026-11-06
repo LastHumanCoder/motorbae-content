@@ -609,7 +609,7 @@
     "https://motorbae.store/cdn/shop/files/Back_2_c_61_1ba81376-fc4c-4d49-b19d-67d12c3e0872.jpg?v=1773177539&width=1200",
     "https://motorbae.store/cdn/shop/files/Front_1_c_48.jpg?v=1773177539&width=1200",
     "https://motorbae.store/cdn/shop/files/Back_2_c_48.jpg?v=1773177539&width=1200",
-    "https://motorbae.store/cdn/shop/files/1744980287sizechart_1d82efd4-7816-4dff-8908-5f69c8757796.png?v=1773177480&width=1200"
+    "https://motorbae.store/cdn/shop/files/Vend_Q_regular_fit_tshirt.png?v=1775565103&width=1200"
    ],
    "collections": [
     "europa",
@@ -775,7 +775,7 @@
     "https://motorbae.store/cdn/shop/files/Left_Pocket_3_c_30.jpg?v=1772906257&width=1200",
     "https://motorbae.store/cdn/shop/files/Back_2_c_61_f265cf89-d04b-46d0-aef3-ab3d485d7291.jpg?v=1772906257&width=1200",
     "https://motorbae.store/cdn/shop/files/Left_Pocket_3_c_61.jpg?v=1772906098&width=1200",
-    "https://motorbae.store/cdn/shop/files/1744980287sizechart.png?v=1772906097&width=1200"
+    "https://motorbae.store/cdn/shop/files/Vend_Q_regular_fit_tshirt.png?v=1775565103&width=1200"
    ],
    "collections": [
     "europa",
@@ -2059,8 +2059,68 @@
  ],
  "articles": [
   {
-   "handle": "trending-clothes-for-men-in-india-2026-the-only-style-guide-you-needtrending-clothes-men-india-2026",
-   "url": "https://motorbae.store/blogs/the-garage/trending-clothes-for-men-in-india-2026-the-only-style-guide-you-needtrending-clothes-men-india-2026",
+   "handle": "best-winter-outfits-for-men-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-winter-outfits-for-men-india-2026",
+   "title": "Best Winter Outfits for Men in India (2026): Complete Style Guide",
+   "published": "2026-10-26"
+  },
+  {
+   "handle": "best-track-pants-for-men-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-track-pants-for-men-india-2026",
+   "title": "Best Track Pants for Men in India (2026)",
+   "published": "2026-10-22"
+  },
+  {
+   "handle": "automotive-t-shirts-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/automotive-t-shirts-india-2026",
+   "title": "Automotive T-Shirts India: Best Brands & Where to Buy (2026)",
+   "published": "2026-10-21"
+  },
+  {
+   "handle": "best-gifts-for-him-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-gifts-for-him-india-2026",
+   "title": "Best Gifts for Him in India (2026): Car & Bike Lover Edition",
+   "published": "2026-10-19"
+  },
+  {
+   "handle": "best-sweater-for-men-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-sweater-for-men-india-2026",
+   "title": "Best Sweater for Men in India (2026)",
+   "published": "2026-10-15"
+  },
+  {
+   "handle": "best-jacket-for-men-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-jacket-for-men-india-2026",
+   "title": "Best Jacket for Men in India (2026): Riding, Casual & Streetwear",
+   "published": "2026-10-13"
+  },
+  {
+   "handle": "best-cargo-pants-for-men-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-cargo-pants-for-men-india-2026",
+   "title": "Best Cargo Pants for Men in India (2026): Complete Style Guide",
+   "published": "2026-10-12"
+  },
+  {
+   "handle": "best-full-sleeve-t-shirts-for-men-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-full-sleeve-t-shirts-for-men-india-2026",
+   "title": "Best Full Sleeve T-Shirts for Men in India (2026)",
+   "published": "2026-10-08"
+  },
+  {
+   "handle": "best-diwali-gifts-for-car-lovers-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-diwali-gifts-for-car-lovers-india-2026",
+   "title": "Best Diwali Gifts for Car Lovers India (2026)",
+   "published": "2026-10-07"
+  },
+  {
+   "handle": "best-hoodies-for-men-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/best-hoodies-for-men-india-2026",
+   "title": "Best Hoodies for Men in India (2026)",
+   "published": "2026-10-06"
+  },
+  {
+   "handle": "trending-clothes-for-men-in-india-2026",
+   "url": "https://motorbae.store/blogs/the-garage/trending-clothes-for-men-in-india-2026",
    "title": "Trending Clothes for Men in India (2026): The Only Style Guide You Need",
    "published": "2026-09-28"
   },
@@ -2298,7 +2358,7 @@
    "handle": "under-699-store",
    "title": "Under 699 Store",
    "url": "https://motorbae.store/collections/under-699-store",
-   "count": 18
+   "count": 19
   },
   {
    "handle": "under-999-store",

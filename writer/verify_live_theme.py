@@ -26,7 +26,7 @@ with sync_playwright() as p:
     bad = 0
     for vw in (390, 1280):
         pg = b.new_page(viewport={"width": vw, "height": 900}, is_mobile=vw < 500)
-        for h in cfg["october"]:
+        for h in cfg[sys.argv[1] if len(sys.argv) > 1 else "october"]:
             pg.goto(HOST, wait_until="domcontentloaded", timeout=60000); pg.wait_for_selector(".mb-post", timeout=60000)
             m = pg.evaluate(JS, (ROOT / "out" / f"{h}.html").read_text())
             ok = m["doc"] <= m["vw"] and not m["clipped"] and not m["broken"] and m["h1"] == 1 and m["small"] >= 11
